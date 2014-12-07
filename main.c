@@ -6,7 +6,7 @@
 /*   By: smicaliz <smicaliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 21:01:01 by smicaliz          #+#    #+#             */
-/*   Updated: 2014/11/24 13:03:31 by ykichena         ###   ########.fr       */
+/*   Updated: 2014/12/02 12:09:10 by ykichena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_list			*ft_add(char *str, int l)
 	t_list	*tmp;
 
 	tmp = (t_list *)malloc(sizeof(t_list));
+	if (tmp == NULL)
+		exit(-1);
 	tmp->line = str;
 	tmp->nb_line = l;
 	tmp->next = NULL;
@@ -75,7 +77,7 @@ static void		display(char *str)
 {
 	ft_putstr("Assembling ");
 	ft_putstr(str);
-	ft_putstr(" :");
+	ft_putstr(":\n");
 }
 
 int				main(int argc, char **argv)

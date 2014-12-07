@@ -6,10 +6,11 @@
 /*   By: ykichena <ykichena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/13 08:41:40 by ykichena          #+#    #+#             */
-/*   Updated: 2014/11/24 13:05:44 by ykichena         ###   ########.fr       */
+/*   Updated: 2014/12/06 20:03:09 by ykichena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <op.h>
 #include <asm.h>
 #include <libft.h>
 #include <stdlib.h>
@@ -82,13 +83,13 @@ static char		*ignore_comment(char *str)
 	if (!comment_1 && !comment_2)
 		return (str);
 	if (comment_1 && !comment_2)
-		cpy = ft_strsub(str, 0, ft_strlen(comment_1));
+		cpy = ft_strsub(str, 0, ft_strlen(str) - ft_strlen(comment_1));
 	else if (!comment_1 && comment_2)
-		cpy = ft_strsub(str, 0, ft_strlen(comment_2));
+		cpy = ft_strsub(str, 0, ft_strlen(str) - ft_strlen(comment_2));
 	else if (ft_strlen(comment_1) < ft_strlen(comment_2))
-		cpy = ft_strsub(str, 0, ft_strlen(comment_2));
+		cpy = ft_strsub(str, 0, ft_strlen(str) - ft_strlen(comment_2));
 	else if (ft_strlen(comment_1) < ft_strlen(comment_2))
-		cpy = ft_strsub(str, 0, ft_strlen(comment_1));
+		cpy = ft_strsub(str, 0, ft_strlen(str) - ft_strlen(comment_1));
 	if (cpy == NULL)
 		exit(-1);
 	return (cpy);
@@ -134,7 +135,7 @@ void			parse_inside(t_list *list, char *file_name)
 		if (str == NULL)
 			exit(-1);
 		if (str2 && str2 != tmp->line)
-			ft_strdel(str2);
+			ft_strdel(&str2);
 		free(tmp->line);
 		tmp->line = NULL;
 		tmp->line = str;
